@@ -18,7 +18,7 @@ public class Journal extends Paper
 	 */
 	public Journal()
 	{
-		TYPE = "Journal";//Test
+		TYPE = "Journal";
 		this.authors = null;
 		this.paperTitle = null;
 		this.serialTitle = null;;
