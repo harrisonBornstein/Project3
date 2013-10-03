@@ -21,8 +21,6 @@ public class Driver {
 	 */
 	public static void main(String[] args) throws IOException 
 	{
-		
-		//testing new branch
 		System.out.println("To use GUI type 1\nTo use console type 2");
 		BufferedReader inputReader = new BufferedReader(new InputStreamReader( System.in ) );
 		String answer = inputReader.readLine();
