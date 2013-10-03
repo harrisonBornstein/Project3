@@ -1,0 +1,49 @@
+Conference Paper 1:
+Paper Title: Sexual Selection
+Serial Title: International Conference on the Synthesis and Simulation of Living Systems
+Authors: Woehrer, Mark;  Hougen, Dean;  Schlupp, Ingo
+Pages137-144
+Date Published: July 2012
+Url: http://dx.doi.org/10.7551/978-0-262-31050-5-ch020
+
+Conference Paper 2:
+Paper Title: Q
+Serial Title: Swimmers International
+Authors: Reimnitz, Kevin J.
+Pages0-12
+Date Published: July 2089
+Url: http://www.swimming.com
+
+Conference Paper 3:
+Paper Title: Evolution and Stuff is Real
+Serial Title: Society of the Evolved
+Authors: Darwin, Charles P.
+Pages88(89):34-43
+Date Published: January 2340
+Url: http://www.parrots.com
+
+Journal 4:
+Paper Title: Extending
+Serial Title: Robotics and Autonomous Systems
+Authors: Eskridge, Brent E.;  Hougen, Dean F.
+Volume Issue And Pages58(9):1076-1084
+Date Published: September 2010
+Url: 
+
+Journal 5:
+Paper Title: How to Play 
+Serial Title: NBA
+Authors: Bornstein, Harrison M.
+Volume Issue And Pages76(09):57-90
+Date Published: September 1259
+Url: http://www.NBA.org
+
+Journal 6:
+Paper Title: Harry Potter is Real
+Serial Title: Hogwarts Daily
+Authors: Rowling, J.K.
+Volume Issue And Pages56(9):12-455
+Date Published: July 2022
+Url: http://www.HP.com
+
+
