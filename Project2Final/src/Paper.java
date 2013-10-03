@@ -7,7 +7,7 @@ public abstract class Paper implements Comparator<Paper>, Serializable
 {
 
 	private static final long serialVersionUID = 4582182765986115613L;
-	protected List<String> authors;
+	protected List<String> authors; //test
 	protected String paperTitle;
 	protected String serialTitle;
 	protected String date;
