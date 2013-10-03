@@ -15,7 +15,7 @@ public class ConPaper extends Paper implements Comparator<Paper>
 	 */
 	public ConPaper()
 	{
-		TYPE = "Conference Paper";
+		TYPE = "Conference Paper";//Test
 		authors = null;
 		paperTitle = null;
 		serialTitle = null;
