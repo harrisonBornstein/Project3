@@ -20,6 +20,7 @@ public class Publications implements Serializable
 	private boolean sortedByPaperTitle;
 	private boolean sortedBySerialTitle;
 	private boolean sortedByChrono;
+	private HashMap<Author> authors;
 	
 	/**
 	 * Constructor
@@ -220,6 +221,15 @@ public class Publications implements Serializable
 	public int getSize()
 	{
 		return this.publications.size();
+	}
+	
+	/**
+	 * Searches using a HashMap for author
+	 * @return a list of paper titles that the author published
+	 */
+	public List<String> searchAuthor(String author)
+	{
+		
 	}
 	
 	

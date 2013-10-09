@@ -505,7 +505,15 @@ public class Driver {
 			}
 		}
 	}
-			
+	
+	/**
+	 * @author author data to be graphed
+	 * Displays different graphs corresponding with the papers the author wrote
+	 */
+	public void graph(Author author)
+	{
+		
+	}
 		
 
 }
