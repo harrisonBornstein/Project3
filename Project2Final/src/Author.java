@@ -9,7 +9,7 @@ public class Author {
 	/**
 	 * Constructs an Author Object
 	 */
-	public Author(String lastName, String firstName, listOfPapers<String>)
+	public Author(String lastName, String firstName, List<String> listOfPapers)
 	{
 		
 	}
