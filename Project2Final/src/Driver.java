@@ -21,16 +21,17 @@ public class Driver {
 	 */
 	public static void main(String[] args) throws IOException 
 	{
-		System.out.println("To use GUI type 1\nTo use console type 2");
-		BufferedReader inputReader = new BufferedReader(new InputStreamReader( System.in ) );
-		String answer = inputReader.readLine();
-		if(answer.equals("1"))
-			GUI();
-		else if(answer.equals("2"))
-			console();
-		else
-			System.exit(0);
-		
+		jFrame();
+//		System.out.println("To use GUI type 1\nTo use console type 2");
+//		BufferedReader inputReader = new BufferedReader(new InputStreamReader( System.in ) );
+//		String answer = inputReader.readLine();
+//		if(answer.equals("1"))
+//			GUI();
+//		else if(answer.equals("2"))
+//			console();
+//		else
+//			System.exit(0);
+//		
 		
 		
 	}
@@ -513,6 +514,21 @@ public class Driver {
 	public void graph(Author author)
 	{
 		
+	}
+	public void jFrame()
+	{
+		 JFrame window = new JFrame();
+	        JPanel mainframe=new JPanel();
+	        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        window.setBounds(0,0,200,200);
+	        JButton jb=new JButton();
+	        jb.setText("Leech");
+	        mainframe.add(jb);
+	        JTextField link=new JTextField(50);
+	        mainframe.add(link);
+	        window.getContentPane().add(mainframe);
+	        window.pack();
+	        window.setVisible(true);
 	}
 		
 
