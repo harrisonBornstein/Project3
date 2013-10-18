@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -20,14 +21,15 @@ public class Publications implements Serializable
 	private boolean sortedByPaperTitle;
 	private boolean sortedBySerialTitle;
 	private boolean sortedByChrono;
-	private HashMap<Author> authors;
-	
+	private HashMap<String, Author> authors;
+ 	
 	/**
 	 * Constructor
 	 */
 	public Publications()
 	{
 		publications = new ArrayList<Paper>();
+		authors = new HashMap<String, Author>();
 	}
 	
 	/**
@@ -38,6 +40,26 @@ public class Publications implements Serializable
 	public boolean addPaper(Paper toAdd)
 	{
 		publications.add(toAdd);
+		//for each author of the Paper check to see if we already made an Author object for him
+		for (String author: toAdd.getAuthors())
+		{
+			//if the author already has an object
+			if (authors.containsKey(author))
+			{
+				//add the title to the Author object'list
+				authors.get(author).addToList(toAdd.getPaperTitle());
+			}
+			//if the author does not have an object yet
+			else if(!authors.containsKey(author))
+			{
+				//make list with the paperTitle in it
+				List<String> paperTitles = new ArrayList<String>();
+				paperTitles.add(toAdd.getPaperTitle());
+				
+				//make an Author object and add it to the HashMap
+				authors.put(author, new Author(author.split(", ")[0], author.split(", ")[1], paperTitles));
+			}
+		}
 		return true;
 	}
 	
@@ -221,15 +243,6 @@ public class Publications implements Serializable
 	public int getSize()
 	{
 		return this.publications.size();
-	}
-	
-	/**
-	 * Searches using a HashMap for author
-	 * @return a list of paper titles that the author published
-	 */
-	public List<String> searchAuthor(String author)
-	{
-		
 	}
 	
 	
