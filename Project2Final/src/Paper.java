@@ -268,7 +268,7 @@ public abstract class Paper implements Comparator<Paper>, Serializable
 	}
 	
 	/**
-	 * Display method for GUI. Had to be seperate because JOptionPane needed a returned string
+	 * Display method for GUI. Had to be seperate because JOptionPane needed a returned strin
 	 * @return A string which describes the paper
 	 */
 	public String displayForGUI()
