@@ -1,16 +1,18 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
 public class Driver {
@@ -21,7 +23,10 @@ public class Driver {
 	 */
 	public static void main(String[] args) throws IOException 
 	{
-		jFrame();
+		
+		jFrame frame = new jFrame();
+		frame.setVisible(true);
+		
 //		System.out.println("To use GUI type 1\nTo use console type 2");
 //		BufferedReader inputReader = new BufferedReader(new InputStreamReader( System.in ) );
 //		String answer = inputReader.readLine();
@@ -35,75 +40,13 @@ public class Driver {
 		
 		
 	}
-	/**
-	 * Reads lines from a file and puts each line into an index in an ArrayList
-	 * @param fileName name of the file
-	 * @return an ArrayList each line is a string
-	 * @throws IOException
-	 */
-	public static ArrayList<String> readLines(String fileName) throws IOException
-	{
-		
-		FileReader fr = new FileReader(fileName);
-		ArrayList<String> myArray = new ArrayList<String>();
-		BufferedReader br = new BufferedReader(fr);
-		String nextLine;
-		nextLine = br.readLine();
-
-		while (nextLine != null)
-		{
-			myArray.add(nextLine);			
-			nextLine = br.readLine();
-		}
 	
-		br.close();
-		return myArray;
-	}
 	/**
 	 * Takes the lines as an ArrayList<Sring> from the data file and makes all the Conference Papers an Object
 	 * @param lines String from the data file as an ArrayList()
 	 * @return a publication of only Conference Papers
 	 */
-	public static Publications conSplit(ArrayList<String> lines)
-	{
-			Publications pub = new Publications();
-			List<String> conferenceLines = new ArrayList<String>();
-		
-			for(int i =0; lines.size() > i; ++i)
-			{
-				if(lines.get(i).toString().equals("Conference Paper"))
-				{
-					if(lines.get(i+6).toString() != null)
-					{
-						conferenceLines.add(lines.get(i).toString());
-						conferenceLines.add(lines.get(i+1).toString());
-						conferenceLines.add(lines.get(i+2).toString());
-						conferenceLines.add(lines.get(i+3).toString());
-						conferenceLines.add(lines.get(i+4).toString());
-						conferenceLines.add(lines.get(i+5).toString());
-						conferenceLines.add(lines.get(i+6).toString());
-					}
-					else
-					{
-						conferenceLines.add(lines.get(i).toString());
-						conferenceLines.add(lines.get(i+1).toString());
-						conferenceLines.add(lines.get(i+2).toString());
-						conferenceLines.add(lines.get(i+3).toString());
-						conferenceLines.add(lines.get(i+4).toString());
-						conferenceLines.add(lines.get(i+5).toString());
-					}
-				}
-			}
-			for(int j =0; conferenceLines.size() > j;j = j+7)
-			{
-					List<String> authors = new ArrayList<String>();
-					authors.addAll(Arrays.asList(conferenceLines.get(j+1).toString().split(";")));
-					pub.addPaper(new ConPaper(authors,conferenceLines.get(j+2).toString(),conferenceLines.get(j+3).toString(),conferenceLines.get(j+4).toString(),conferenceLines.get(j+5).toString(),conferenceLines.get(j+6).toString()));
-			}
-			return pub;
-					
 	
-	}
 	/**
 	 * Takes the lines as an ArrayList<Sring> from the data file and makes all the Journals an object
 	 * @param lines Data from the file
@@ -147,6 +90,64 @@ public class Driver {
 					journalPub.addPaper(new Journal(authors,journalLines.get(j+2).toString(),journalLines.get(j+3).toString(),journalLines.get(j+4).toString(),journalLines.get(j+5).toString(),journalLines.get(j+6).toString()));
 			}
 			return journalPub;
+	}
+	public static ArrayList<String> readLines(String fileName) throws IOException
+	{
+		
+		FileReader fr = new FileReader(fileName);
+		ArrayList<String> myArray = new ArrayList<String>();
+		BufferedReader br = new BufferedReader(fr);
+		String nextLine;
+		nextLine = br.readLine();
+
+		while (nextLine != null)
+		{
+			myArray.add(nextLine);			
+			nextLine = br.readLine();
+		}
+	
+		br.close();
+		return myArray;
+	}
+	public static Publications conSplit(ArrayList<String> lines)
+	{
+			Publications pub = new Publications();
+			ArrayList<String> conferenceLines = new ArrayList<String>();
+		
+			for(int i =0; lines.size() > i; ++i)
+			{
+				if(lines.get(i).toString().equals("Conference Paper"))
+				{
+					if(lines.get(i+6).toString() != null)
+					{
+						conferenceLines.add(lines.get(i).toString());
+						conferenceLines.add(lines.get(i+1).toString());
+						conferenceLines.add(lines.get(i+2).toString());
+						conferenceLines.add(lines.get(i+3).toString());
+						conferenceLines.add(lines.get(i+4).toString());
+						conferenceLines.add(lines.get(i+5).toString());
+						conferenceLines.add(lines.get(i+6).toString());
+					}
+					else
+					{
+						conferenceLines.add(lines.get(i).toString());
+						conferenceLines.add(lines.get(i+1).toString());
+						conferenceLines.add(lines.get(i+2).toString());
+						conferenceLines.add(lines.get(i+3).toString());
+						conferenceLines.add(lines.get(i+4).toString());
+						conferenceLines.add(lines.get(i+5).toString());
+					}
+				}
+			}
+			for(int j =0; conferenceLines.size() > j;j = j+7)
+			{
+					ArrayList<String> authors = new ArrayList<String>();
+					authors.addAll(Arrays.asList(conferenceLines.get(j+1).toString().split(";")));
+					pub.addPaper(new ConPaper(authors,conferenceLines.get(j+2).toString(),conferenceLines.get(j+3).toString(),conferenceLines.get(j+4).toString(),conferenceLines.get(j+5).toString(),conferenceLines.get(j+6).toString()));
+			}
+			return pub;
+					
+	
 	}
 	/**
 	 * Runs the program through the console
@@ -507,29 +508,5 @@ public class Driver {
 		}
 	}
 	
-	/**
-	 * @author author data to be graphed
-	 * Displays different graphs corresponding with the papers the author wrote
-	 */
-	public void graph(Author author)
-	{
-		
-	}
-	public void jFrame()
-	{
-		 JFrame window = new JFrame();
-	        JPanel mainframe=new JPanel();
-	        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        window.setBounds(0,0,200,200);
-	        JButton jb=new JButton();
-	        jb.setText("Leech");
-	        mainframe.add(jb);
-	        JTextField link=new JTextField(50);
-	        mainframe.add(link);
-	        window.getContentPane().add(mainframe);
-	        window.pack();
-	        window.setVisible(true);
-	}
-		
 
 }

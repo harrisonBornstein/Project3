@@ -145,7 +145,10 @@ public class jFrame extends JFrame {
 			JButton btnGraphs = new JButton("Display Graphs");
 			btnGraphs.setBounds(65, 118, 191, 29);
 			btnGraphs.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+				public void actionPerformed(ActionEvent e) 
+				{
+					String search = JOptionPane.showInputDialog ("Please input an author to display graphical data:"); 
+					
 				}
 			});
 			contentPane.add(btnGraphs);
