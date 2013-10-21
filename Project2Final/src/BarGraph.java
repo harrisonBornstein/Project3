@@ -10,8 +10,15 @@ import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
  
+
+/*Code is from stack overflow*/
 public class BarGraph extends JPanel {
-  private double[] values;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4389067912602888412L;
+
+private double[] values;
  
   private String[] names;
  
@@ -81,28 +88,5 @@ public class BarGraph extends JPanel {
     }
   }
  
-  public static void main(String[] argv) {
-    JFrame f = new JFrame();
-    f.setSize(400, 300);
-    double[] values = new double[3];
-    String[] names = new String[3];
-    values[0] = 1;
-    names[0] = "Item 1";
  
-    values[1] = 2;
-    names[1] = "Item 2";
- 
-    values[2] = 4;
-    names[2] = "Item 3";
- 
-    f.getContentPane().add(new BarGraph(values, names, "title"));
- 
-    WindowListener wndCloser = new WindowAdapter() {
-      public void windowClosing(WindowEvent e) {
-        System.exit(0);
-      }
-    };
-    f.addWindowListener(wndCloser);
-    f.setVisible(true);
-  }
 }
