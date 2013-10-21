@@ -148,7 +148,12 @@ public class jFrame extends JFrame {
 				public void actionPerformed(ActionEvent e) 
 				{
 					String search = JOptionPane.showInputDialog ("Please input an author to display graphical data:"); 
-					
+					String optionPane = "What data would you like to show?";
+					Object[] options = {"Type of Publications", "Publications Per Year", "Conference Papers Per Year", "Journal Articles Per Year", "Number of Co-Authors Per Publicaiton"};
+					//if(pub.searchAuhor(search) != null)
+					{
+						int response = JOptionPane.showOptionDialog(null, optionPane, "Academic Paper already in the Collection", JOptionPane.PLAIN_MESSAGE, 1, null, options, options[0]);
+					}
 				}
 			});
 			contentPane.add(btnGraphs);
@@ -192,7 +197,7 @@ public class jFrame extends JFrame {
 					}
 					if(response ==1)
 					{
-						//Binary Read File
+						//TODO: Binary Read File
 					}
 					if(response == 2)
 					{
