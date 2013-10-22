@@ -157,10 +157,17 @@ public class jFrame extends JFrame {
 						if(response == 0)
 						{
 							//TODO Type of pub
+							double[] data = {countTypes(pub.searchAuthor(search))[0], countTypes(pub.searchAuthor(search))[1]};
+							String[] names = {"Conference Papers", "Journals"};
+							BarGraph paperTypes = new BarGraph(data, names, "Types of Papers by " + search);
+							paperTypes.setVisible(true);
 						}
 						if(response == 1)
 						{
-							
+							double[] data = {countTypes(pub.searchAuthor(search))[0], countTypes(pub.searchAuthor(search))[1]};
+							String[] names = {"Conference Papers", "Journals"};
+							BarGraph paperTypes = new BarGraph(data, names, "Types of Papers by " + search);
+							paperTypes.setVisible(true);
 						}
 						if(response == 2)
 						{
