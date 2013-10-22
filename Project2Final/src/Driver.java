@@ -454,8 +454,7 @@ public class Driver {
 			if(answer == 1)
 			{
 				String search = JOptionPane.showInputDialog ("Please Input the title to search by:"); 
-				int index = pub.searchPaperTitle(search);
-				if (index == -1)
+				if (search == null)
 				{
 					JOptionPane.showMessageDialog(null, "Title Not Found", "", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -463,7 +462,7 @@ public class Driver {
 				{
 					String blank = "";
 					/*string starts blank and formats the Papers for the dialog*/
-					blank += pub.getPaper(index).getType()+":\n" + pub.getPaper(index).displayForGUI() + "\n" + "\n"; 
+					blank += pub.searchPaperTitle(search).getType()+":\n" + pub.searchPaperTitle(search).displayForGUI() + "\n" + "\n"; 
 					JOptionPane.showMessageDialog(null,blank, "", JOptionPane.INFORMATION_MESSAGE);
 				}	
 			

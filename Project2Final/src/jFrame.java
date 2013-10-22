@@ -225,7 +225,7 @@ public class jFrame extends JFrame {
 						{
 							pub.addPaper(journalTest.getPaper(i));
 						}
-						for(int i =0; conTest.getSize()>i;++i)
+						/*for(int i =0; conTest.getSize()>i;++i)
 						{
 							pub.addPaper(conTest.getPaper(i));
 						}
@@ -233,7 +233,7 @@ public class jFrame extends JFrame {
 						for(int i =0; journalTest.getSize()>i;++i)
 						{
 							pub.addPaper(journalTest.getPaper(i));
-						}
+						}*/
 						
 					}
 					if(response ==1)
@@ -288,6 +288,14 @@ public class jFrame extends JFrame {
 			btnSearchByPaper.setBounds(334, 118, 174, 29);
 			contentPane.add(btnSearchByPaper);
 		}
+		
+		/**
+		 * 
+		 * @param fileName File to read in
+		 * @return An ArrayList<Sting> of the file's lines
+		 * 
+		 * @throws IOException
+		 */
 		public static ArrayList<String> readLines(String fileName) throws IOException
 		{
 			
@@ -395,6 +403,14 @@ public class jFrame extends JFrame {
 				}
 				return journalPub;
 		}
+		
+		/**
+		 * Prints a Pulications to a Text or Binary File of specified name
+		 * 
+		 * @param publication Publications to print to a file
+		 * 
+		 * @throws IOException
+		 */
 		public static void printToFile(Publications publication) throws IOException
 		{
 			Object[] options = {"Text", "Binary", "Exit"};
@@ -425,6 +441,14 @@ public class jFrame extends JFrame {
 				objectOutputStream.close();
 			}
 		}
+		
+		/**
+		 * 
+		 * @param filename String of the file name to read in
+		 * @return A Publications with the data from the file read in
+		 * @throws IOException
+		 * @throws ClassNotFoundException
+		 */
 		public static Publications binaryReadPapers(String filename) throws IOException, ClassNotFoundException
 		{
 			
@@ -461,6 +485,14 @@ public class jFrame extends JFrame {
 			return types;
 		}
 		
+		/**
+		 * 
+		 * @param author Author object to get data from
+		 * @return An ArrayList<int[]> with each int[] formatted as follows:
+		 *          [0]: Year     [1]: Papers in that year     
+		 *          [2]:  Conference Papers in that year  [3]: Journals in that year
+		 *          
+		 */
 		public ArrayList<int[]> countYears(Author author)
 		{
 			ArrayList<int[]> data = new ArrayList<int[]>();

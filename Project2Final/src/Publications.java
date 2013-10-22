@@ -34,7 +34,7 @@ public class Publications implements Serializable
 	
 	/**
 	 * 
-	 * @param toAdd Paper to add to publications
+	 * @param toAdd Paper to add to publications and Hash Map
 	 * @return whether or not the add was successful
 	 */
 	public boolean addPaper(Paper toAdd)
@@ -56,7 +56,7 @@ public class Publications implements Serializable
 			}
 			else if (authors.containsKey(author)) //if the author already has an object
 			{
-				//add the title to the Author object'list
+				//add the title to the Author object list if it's not already there
 				if (!authors.get(author).getPaperTitles().contains(toAdd.getPaperTitle()))
 				{
 					authors.get(author).addToList(toAdd.getPaperTitle());
@@ -67,6 +67,11 @@ public class Publications implements Serializable
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @param author author full name: Last, First MI. (if they have a MI)
+	 * @return the author object from the Hash Map corresponding to that author
+	 */
 	public Author searchAuthor(String author)
 	{
 		return authors.get(author);
@@ -168,7 +173,7 @@ public class Publications implements Serializable
 	/**
 	 * 
 	 * @param title Title of Paper to search for
-	 * @return the index of Paper found or -1 if none found
+	 * @return the Paper if found, or null if nothing was found
 	 */
 	public Paper searchPaperTitle(String title)
 	{
