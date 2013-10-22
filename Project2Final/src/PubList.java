@@ -62,4 +62,44 @@ public class PubList extends JFrame {
 		btnExit.setBounds(149, 336, 117, 29);
 		contentPane.add(btnExit);
 	}
+	public PubList(Paper paper) {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 450, 404);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(5, 5, 440, 317);
+		contentPane.add(scrollPane);
+		ArrayList<String> pubInfo = new ArrayList();
+	
+			pubInfo.add("Type: " + paper.getType());
+			pubInfo.add("Paper Title: " + paper.getPaperTitle());
+			pubInfo.add("Serial Title: " + paper.getSerialTitle());
+			pubInfo.add("Authors: " + paper.getAuthors().toString());
+			pubInfo.add("Page Numbers: " + paper.getPages());
+			pubInfo.add("Publication Date: " + paper.getDate());
+			pubInfo.add(" ");
+	
+		
+		//String[] columnNames = {"Serial Title", "Paper Title", "Authors", "Publication Date"};
+//		JTable jTable1 = new javax.swing.JTable(pubInfo, columnNames);
+//		scrollPane.setViewportView(jTable1);
+		
+		
+		JList list = new JList(pubInfo.toArray());
+		scrollPane.setViewportView(list);
+		
+		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				dispose();
+			}
+		});
+		btnExit.setBounds(149, 336, 117, 29);
+		contentPane.add(btnExit);
+	}
 }

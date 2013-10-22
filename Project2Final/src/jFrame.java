@@ -147,14 +147,14 @@ public class jFrame extends JFrame {
 			contentPane.add(lblPleaseImportFile);
 			
 			JButton btnGraphs = new JButton("Display Graphs");
-			btnGraphs.setBounds(65, 118, 191, 29);
+			btnGraphs.setBounds(6, 118, 155, 29);
 			btnGraphs.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) 
 				{
 					String search = JOptionPane.showInputDialog ("Please input an author to display graphical data:"); 
 					String optionPane = "What data would you like to show?";
 					Object[] options = {"Type of Publications", "Publications Per Year", "Conference Papers Per Year", "Journal Articles Per Year", "Number of Co-Authors Per Publicaiton"};
-					if(pub.searchAuhor(search) != null)
+					if(pub.searchAuthor(search) != null)
 					{
 						int response = JOptionPane.showOptionDialog(null, optionPane, "Academic Paper already in the Collection", JOptionPane.PLAIN_MESSAGE, 1, null, options, options[0]);
 						if(response == 0)
@@ -184,7 +184,7 @@ public class jFrame extends JFrame {
 			contentPane.add(btnGraphs);
 			
 			JButton btnFindAuthors = new JButton("Find Authors");
-			btnFindAuthors.setBounds(268, 118, 199, 29);
+			btnFindAuthors.setBounds(173, 118, 149, 29);
 			contentPane.add(btnFindAuthors);
 			
 			JButton btnImprot = new JButton("Import");
@@ -263,6 +263,26 @@ public class jFrame extends JFrame {
 			});
 			btnExit.setBounds(527, 118, 117, 29);
 			contentPane.add(btnExit);
+			
+			JButton btnSearchByPaper = new JButton("Search by Paper Title");
+			btnSearchByPaper.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) 
+				{
+					String search = JOptionPane.showInputDialog ("Please Input the title to search by:"); 
+					int index = pub.searchPaperTitle(search);
+					if (index == -1)
+					{
+						JOptionPane.showMessageDialog(null, "Title Not Found", "", JOptionPane.INFORMATION_MESSAGE);
+					}
+					else
+					{
+						PubList list = new PubList(pub.getPaper(index));
+						list.setVisible(true);
+					}
+				}
+			});
+			btnSearchByPaper.setBounds(334, 118, 174, 29);
+			contentPane.add(btnSearchByPaper);
 		}
 		public static ArrayList<String> readLines(String fileName) throws IOException
 		{

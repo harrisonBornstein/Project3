@@ -283,7 +283,10 @@ public abstract class Paper implements Comparator<Paper>, Serializable
 	{
 		 return null;
 	}
-
+	public String getPages()
+	{
+		return null;
+	}
 			
 
 	

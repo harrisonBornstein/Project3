@@ -53,7 +53,7 @@ public class Journal extends Paper
 	 * 
 	 * @return String containing the Volume, Issue, and Pages of the Journal
 	 */
-	public String getVolumeIssueAndPages()
+	public String getPages()
 	{
 		return this.volumeIssueAndPages;
 	}
