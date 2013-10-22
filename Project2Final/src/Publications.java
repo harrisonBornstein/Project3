@@ -63,6 +63,11 @@ public class Publications implements Serializable
 		return true;
 	}
 	
+	public Author searchAuthor(String author)
+	{
+		return authors.get(author);
+	}
+	
 	/**
 	 * 
 	 * @return whether or not the sort by authors was successful
