@@ -4,10 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -31,7 +35,7 @@ public class jFrame extends JFrame {
 	private static final long serialVersionUID = -3595897893932351336L;
 	private JPanel contentPane;
 	private JTextField textField;
-	private Publications pub = new Publications();
+	private static Publications pub = new Publications();
 	
 
 		/**
@@ -150,9 +154,30 @@ public class jFrame extends JFrame {
 					String search = JOptionPane.showInputDialog ("Please input an author to display graphical data:"); 
 					String optionPane = "What data would you like to show?";
 					Object[] options = {"Type of Publications", "Publications Per Year", "Conference Papers Per Year", "Journal Articles Per Year", "Number of Co-Authors Per Publicaiton"};
-					//if(pub.searchAuhor(search) != null)
+					if(pub.searchAuhor(search) != null)
 					{
 						int response = JOptionPane.showOptionDialog(null, optionPane, "Academic Paper already in the Collection", JOptionPane.PLAIN_MESSAGE, 1, null, options, options[0]);
+						if(response == 0)
+						{
+							//TODO Type of pub
+						}
+						if(response == 1)
+						{
+							
+						}
+						if(response == 2)
+						{
+							
+						}
+						if(response == 3)
+						{
+							
+						}
+						if(response == 4)
+						{
+							
+						}
+						
 					}
 				}
 			});
@@ -184,6 +209,17 @@ public class jFrame extends JFrame {
 						}
 						conTest = conSplit(read);
 						journalTest =journalSplit(read);
+						
+						
+						for(int i =0; conTest.getSize()>i;++i)
+						{
+							pub.addPaper(conTest.getPaper(i));
+						}
+						
+						for(int i =0; journalTest.getSize()>i;++i)
+						{
+							pub.addPaper(journalTest.getPaper(i));
+						}
 						for(int i =0; conTest.getSize()>i;++i)
 						{
 							pub.addPaper(conTest.getPaper(i));
@@ -197,7 +233,16 @@ public class jFrame extends JFrame {
 					}
 					if(response ==1)
 					{
-						//TODO: Binary Read File
+						
+						try {
+							pub = binaryReadPapers(fileName);
+						} catch (ClassNotFoundException e1) {
+						
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							
+							e1.printStackTrace();
+						}
 					}
 					if(response == 2)
 					{
@@ -328,11 +373,13 @@ public class jFrame extends JFrame {
 		}
 		public static void printToFile(Publications publication) throws IOException
 		{
-			
+			Object[] options = {"Text", "Binary", "Exit"};
 			BufferedReader inputReader = new BufferedReader(new InputStreamReader( System.in ) );
-			System.out.print( "Please give a name for the output file: " );
+			int response = JOptionPane.showOptionDialog(null, "Would you like binary output or text output", "File Output", JOptionPane.PLAIN_MESSAGE, 1, null, options, options[0]);
+			if(response == 0)
+			{
+			String fileName = JOptionPane.showInputDialog ("Please input a name for the file"); 
 			String blank = "";
-			String fileName = inputReader.readLine();
 			FileWriter outfile = new FileWriter(fileName);
 			for(int i =0; i < publication.getSize(); ++i)
 			{
@@ -344,5 +391,23 @@ public class jFrame extends JFrame {
 			bw.write(blank);
 			bw.newLine();
 			bw.close();
-		}	
+			}
+			if(response ==1)
+			{
+				String fileName = JOptionPane.showInputDialog ("Please input a name for the file"); 
+				FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+				objectOutputStream.writeObject(pub);
+				objectOutputStream.close();
+			}
+		}
+		public static Publications binaryReadPapers(String filename) throws IOException, ClassNotFoundException
+		{
+			
+			FileInputStream fileInputStream = new FileInputStream(filename);
+			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+			Publications papers = (Publications) objectInputStream.readObject();
+			objectInputStream.close();
+			return papers;
+		}
 }
