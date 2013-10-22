@@ -138,9 +138,6 @@ public class jFrame extends JFrame {
 			btnAuthors.setBounds(527, 77, 117, 29);
 			contentPane.add(btnAuthors);
 			
-			JButton btnFindAuthor = new JButton("Find Author");
-			btnFindAuthor.setBounds(243, 44, 117, 29);
-			contentPane.add(btnFindAuthor);
 			
 			JLabel lblPleaseImportFile = new JLabel("Please Import File:");
 			lblPleaseImportFile.setBounds(15, 11, 197, 16);
@@ -183,7 +180,15 @@ public class jFrame extends JFrame {
 			});
 			contentPane.add(btnGraphs);
 			
-			JButton btnFindAuthors = new JButton("Find Authors");
+			JButton btnFindAuthors = new JButton("Find Author");
+			btnFindAuthors.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) 
+				{
+					String search = JOptionPane.showInputDialog("Please intput the author to search for: ");
+					search.trim();
+					countTypes(pub.searchAuthor(search));
+				}
+			});
 			btnFindAuthors.setBounds(173, 118, 149, 29);
 			contentPane.add(btnFindAuthors);
 			
@@ -428,5 +433,64 @@ public class jFrame extends JFrame {
 			Publications papers = (Publications) objectInputStream.readObject();
 			objectInputStream.close();
 			return papers;
+		}
+		
+		/**
+		 * 
+		 * @param author author to check
+		 * @return an array with [0] =  the number of Conference Papers and [1] = the number of Journals
+		 */
+		public int[] countTypes(Author author)
+		{
+			int cons = 0;
+			int journs = 0;
+			for (int i = 0; i < author.getPaperTitles().size(); i++) //go through list of titles
+			{
+				if (pub.searchPaperTitle(author.getPaperTitles().get(i)).getType().equals("Conference Paper")) //if the paper is a Conference Paper
+				{
+					cons++;
+				}
+				else
+				{
+					journs++;
+				}
+			}
+			
+			int[] types =  {cons, journs};
+			
+			return types;
+		}
+		
+		public ArrayList<int[]> countYears(Author author)
+		{
+			ArrayList<int[]> data = new ArrayList<int[]>();
+			
+			ArrayList<String> years = new ArrayList<String>();
+			
+			for (String title: author.getPaperTitles())
+			{
+				years.add(pub.searchPaperTitle(title).getDate().split(" ")[1]); //add year as a string
+			}
+			
+			while (years.size() != 0)
+			{
+				int count = 1;
+				String check = years.get(0);
+				years.remove(0);
+				for (int i = 0; i < years.size(); i++)
+				{
+					if (years.get(i).equals(check))
+					{
+						years.remove(i);
+						i--;
+						count++;
+					}
+				}	
+				int[] pair = {Integer.parseInt(check), count};
+				data.add(pair);
+			}
+			
+			return data;
+			
 		}
 }

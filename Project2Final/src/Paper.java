@@ -268,7 +268,7 @@ public abstract class Paper implements Comparator<Paper>, Serializable
 	}
 	
 	/**
-	 * Display method for GUI. Had to be seperate because JOptionPane needed a returned strin
+	 * Display method for GUI. Had to be seperate because JOptionPane needed a returned string
 	 * @return A string which describes the paper
 	 */
 	public String displayForGUI()
@@ -283,11 +283,11 @@ public abstract class Paper implements Comparator<Paper>, Serializable
 	{
 		 return null;
 	}
+
 	public String getPages()
 	{
 		return null;
 	}
-			
 
 	
 

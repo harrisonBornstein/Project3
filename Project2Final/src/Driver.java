@@ -268,14 +268,13 @@ public class Driver {
 			{
 				System.out.println("Please Input the title to search by:");
 				String search = inputReader.readLine();
-				int index = pub.searchPaperTitle(search);
-				if (index == -1)
+				if (search == null)
 				{
 					System.out.println("Title not found");
 				}
 				else
 				{
-					pub.getPaper(index).display();
+					pub.searchPaperTitle(search).display();
 				}
 			}
 			else if(choice.equalsIgnoreCase("E"))

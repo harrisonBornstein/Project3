@@ -20,7 +20,7 @@ public class AuthorTest {
 		Author me = new Author("Kevin", "Reimnitz", titles);
 		Assert.assertEquals(me.getFirstName(), "Kevin");
 		Assert.assertEquals(me.getLastName(), "Reimnitz");
-		Assert.assertEquals(me.getListOfPaperTitles(), titles);
+		Assert.assertEquals(me.getPaperTitles(), titles);
 	}
 
 
