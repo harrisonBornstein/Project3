@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class PubList extends JFrame {
@@ -19,15 +22,16 @@ public class PubList extends JFrame {
 	 * Create the frame.
 	 */
 	public PubList(Publications data) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 450, 404);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		contentPane.add(scrollPane, BorderLayout.CENTER);
+		scrollPane.setBounds(5, 5, 440, 317);
+		contentPane.add(scrollPane);
 		ArrayList<String> pubInfo = new ArrayList();
 		for(int i=0; data.getSize()>i; ++i)
 		{
@@ -35,6 +39,7 @@ public class PubList extends JFrame {
 			pubInfo.add("Paper Title: " + data.getPaper(i).getPaperTitle());
 			pubInfo.add("Serial Title: " + data.getPaper(i).getSerialTitle());
 			pubInfo.add("Authors: " + data.getPaper(i).getAuthors().toString());
+			pubInfo.add("Page Numbers: " + data.getPaper(i).getPages());
 			pubInfo.add("Publication Date: " + data.getPaper(i).getDate());
 			pubInfo.add(" ");
 		}
@@ -46,7 +51,15 @@ public class PubList extends JFrame {
 		
 		JList list = new JList(pubInfo.toArray());
 		scrollPane.setViewportView(list);
+		
+		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				dispose();
+			}
+		});
+		btnExit.setBounds(149, 336, 117, 29);
+		contentPane.add(btnExit);
 	}
-	
-
 }
