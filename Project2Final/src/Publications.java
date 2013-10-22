@@ -43,14 +43,9 @@ public class Publications implements Serializable
 		//for each author of the Paper check to see if we already made an Author object for him
 		for (String author: toAdd.getAuthors())
 		{
-			//if the author already has an object
-			if (authors.containsKey(author))
-			{
-				//add the title to the Author object'list
-				authors.get(author).addToList(toAdd.getPaperTitle());
-			}
+	
 			//if the author does not have an object yet
-			else if(!authors.containsKey(author))
+			if(!authors.containsKey(author))
 			{
 				//make list with the paperTitle in it
 				List<String> paperTitles = new ArrayList<String>();
@@ -59,6 +54,15 @@ public class Publications implements Serializable
 				//make an Author object and add it to the HashMap
 				authors.put(author, new Author(author.split(", ")[0], author.split(", ")[1], paperTitles));
 			}
+			else if (authors.containsKey(author)) //if the author already has an object
+			{
+				//add the title to the Author object'list
+				if (!authors.get(author).getPaperTitles().contains(toAdd.getPaperTitle()))
+				{
+					authors.get(author).addToList(toAdd.getPaperTitle());
+				}
+			}
+			
 		}
 		return true;
 	}
@@ -168,7 +172,6 @@ public class Publications implements Serializable
 	 */
 	public Paper searchPaperTitle(String title)
 	{
-		int count = 0;
 		if (sortedByPaperTitle) 
 		{
 			int left = 0;
@@ -181,7 +184,7 @@ public class Publications implements Serializable
 				Paper middleElement = publications.get(middleIndex);
 				int comparisonValue = middleElement.getPaperTitle().compareTo(
 						title);
-				count++;
+				
 
 				if (comparisonValue < 0) 
 				{
@@ -193,7 +196,6 @@ public class Publications implements Serializable
 				} 
 				else 
 				{
-					System.out.println(count);
 					return publications.get(middleIndex);
 				}
 			}
@@ -204,10 +206,9 @@ public class Publications implements Serializable
 		{
 			for (int i = 0; i < publications.size(); i++)
 			{
-				count++;
+				
 				if (publications.get(i).getPaperTitle().equals(title))
 				{
-					System.out.println(count);
 					return publications.get(i);
 				}
 			}

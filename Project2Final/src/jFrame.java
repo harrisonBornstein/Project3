@@ -186,7 +186,7 @@ public class jFrame extends JFrame {
 				{
 					String search = JOptionPane.showInputDialog("Please intput the author to search for: ");
 					search.trim();
-					countTypes(pub.searchAuthor(search));
+					countYears(pub.searchAuthor(search));
 				}
 			});
 			btnFindAuthors.setBounds(173, 118, 149, 29);
@@ -465,31 +465,43 @@ public class jFrame extends JFrame {
 		{
 			ArrayList<int[]> data = new ArrayList<int[]>();
 			
-			ArrayList<String> years = new ArrayList<String>();
+			ArrayList<String[]> years = new ArrayList<String[]>();
+			
 			
 			for (String title: author.getPaperTitles())
 			{
-				years.add(pub.searchPaperTitle(title).getDate().split(" ")[1]); //add year as a string
+				String[] yearAndType = {pub.searchPaperTitle(title).getDate().split(" ")[1], pub.searchPaperTitle(title).getType()};
+				years.add(yearAndType); //add year as a string
 			}
 			
 			while (years.size() != 0)
 			{
-				int count = 1;
-				String check = years.get(0);
-				years.remove(0);
+				int count = 0;
+				int cons = 0;
+				int journs = 0;
+				String check = years.get(0)[0];
 				for (int i = 0; i < years.size(); i++)
 				{
-					if (years.get(i).equals(check))
+					if (years.get(i)[0].equals(check))
 					{
+						if (years.get(i)[1].equals("ConferencePaper"))
+						{
+							cons++;
+						}
+						else
+						{
+							journs++;
+						}
 						years.remove(i);
 						i--;
 						count++;
 					}
 				}	
-				int[] pair = {Integer.parseInt(check), count};
+				int[] pair = {Integer.parseInt(check), count, cons, journs};
 				data.add(pair);
 			}
 			
+			System.out.println("Year: " + data.get(0)[0] + " Papers: " + data.get(0)[1] + " Cons: " + data.get(0)[2] + " Journs: " + data.get(0)[3]);
 			return data;
 			
 		}
