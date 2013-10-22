@@ -166,7 +166,7 @@ public class Publications implements Serializable
 	 * @param title Title of Paper to search for
 	 * @return the index of Paper found or -1 if none found
 	 */
-	public int searchPaperTitle(String title)
+	public Paper searchPaperTitle(String title)
 	{
 		int count = 0;
 		if (sortedByPaperTitle) 
@@ -194,11 +194,11 @@ public class Publications implements Serializable
 				else 
 				{
 					System.out.println(count);
-					return middleIndex;
+					return publications.get(middleIndex);
 				}
 			}
 			// If the element was not found.
-			return -1;
+			return null;
 		}	
 		else //if unsorted
 		{
@@ -208,12 +208,12 @@ public class Publications implements Serializable
 				if (publications.get(i).getPaperTitle().equals(title))
 				{
 					System.out.println(count);
-					return i;
+					return publications.get(i);
 				}
 			}
 		}
 		
-		return -1;
+		return null;
 	}
 	
 	
@@ -249,9 +249,5 @@ public class Publications implements Serializable
 	{
 		return this.publications.size();
 	}
-	
-	
-	
-
 	
 }
