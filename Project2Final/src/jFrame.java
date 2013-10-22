@@ -269,14 +269,13 @@ public class jFrame extends JFrame {
 				public void actionPerformed(ActionEvent e) 
 				{
 					String search = JOptionPane.showInputDialog ("Please Input the title to search by:"); 
-					int index = pub.searchPaperTitle(search);
-					if (index == -1)
+					if (search == null)
 					{
 						JOptionPane.showMessageDialog(null, "Title Not Found", "", JOptionPane.INFORMATION_MESSAGE);
 					}
 					else
 					{
-						PubList list = new PubList(pub.getPaper(index));
+						PubList list = new PubList(pub.searchPaperTitle(search));
 						list.setVisible(true);
 					}
 				}
