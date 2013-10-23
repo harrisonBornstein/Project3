@@ -146,7 +146,7 @@ public class jFrame extends JFrame {
 				{
 					String search = JOptionPane.showInputDialog ("Please input an author to display graphical data:"); 
 					String optionPane = "What data would you like to show?";
-					Object[] options = {"Type of Publications", "Publications Per Year", "Conference Papers Per Year", "Journal Articles Per Year", "Number of Co-Authors Per Publicaiton"};
+					Object[] options = {"Type of Publications", "Publications Per Year", "Conference Papers Per Year", "Journal Articles Per Year", "Number of Co-Authors Per Publication"};
 					if(pub.searchAuthor(search) != null)
 					{
 						int response = JOptionPane.showOptionDialog(null, optionPane, "Academic Paper already in the Collection", JOptionPane.PLAIN_MESSAGE, 1, null, options, options[0]);
@@ -334,7 +334,21 @@ ArrayList<int[]> years = countYears(pub.searchAuthor(search)); //get data from a
 						}
 						if(response == 4)
 						{
+							double[] data = countCoAuthors(pub.searchAuthor(search));
+							String[] numberOfCoAuthors = new String[data.length];
+							for(int i =0; i < numberOfCoAuthors.length; ++i)
+							{
+								numberOfCoAuthors[i] = "" + i;
+							}
+							BarGraph paperTypes = new BarGraph(data, numberOfCoAuthors, "Co-Authors Per Publication for " + search);
+							paperTypes.setVisible(true);
+					
+							JFrame f = new JFrame();
+							f.setSize(1200, 500);
 							
+
+							f.getContentPane().add(paperTypes);
+							f.setVisible(true);	
 						}
 						
 					}
@@ -710,4 +724,23 @@ ArrayList<int[]> years = countYears(pub.searchAuthor(search)); //get data from a
 			return data;
 			
 		}
+	public double[] countCoAuthors(Author author)
+	{
+		int max =0;
+		for(int i =0; i < author.getPaperTitles().size(); i++)
+		{
+			int coAuthors = pub.searchPaperTitle(author.getPaperTitles().get(i)).getAuthors().size() -1;
+			if(coAuthors > max)
+					{
+						max = coAuthors;
+					}
+		}
+		double[] data = new double[max +1];
+		for (int i =0; i < author.getPaperTitles().size(); i++)
+		{
+			int coAuthors = pub.searchPaperTitle(author.getPaperTitles().get(i)).getAuthors().size() -1;
+			data[coAuthors]++;
+		}
+		return data;
+	}
 }
