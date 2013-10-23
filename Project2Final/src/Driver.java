@@ -10,7 +10,7 @@ public class Driver {
 	public static void main(String[] args) throws IOException 
 	{
 		
-		jFrame frame = new jFrame();
+		View frame = new View();
 		frame.setVisible(true);
 		
 //		System.out.println("To use GUI type 1\nTo use console type 2");

@@ -11,12 +11,10 @@ public class BarGraph extends JPanel {
   /**
 	 * 
 	 */
-	private static final long serialVersionUID = -4389067912602888412L;
+private static final long serialVersionUID = -4389067912602888412L;
 
 private double[] values;
- 
   private String[] names;
- 
   private String title;
  
   public BarGraph(double[] v, String[] n, String t) {

@@ -157,6 +157,7 @@ public class Publications implements Serializable
 	 */
 	public Paper searchPaperTitle(String title)
 	{
+		int count = 0;
 		if (sortedByPaperTitle) 
 		{
 			int left = 0;
@@ -174,13 +175,16 @@ public class Publications implements Serializable
 				if (comparisonValue < 0) 
 				{
 					left = middleIndex + 1;
+					count++;
 				} 
 				else if (comparisonValue > 0) 
 				{
 					right = middleIndex - 1;
+					count++;
 				} 
 				else 
 				{
+					System.out.println(count);
 					return publications.get(middleIndex);
 				}
 			}
@@ -191,9 +195,10 @@ public class Publications implements Serializable
 		{
 			for (int i = 0; i < publications.size(); i++)
 			{
-				
+				count++;
 				if (publications.get(i).getPaperTitle().equals(title))
 				{
+					System.out.println(count);
 					return publications.get(i);
 				}
 			}
