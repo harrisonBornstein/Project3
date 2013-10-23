@@ -3,12 +3,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.io.IOException;
- 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
  
 
@@ -85,7 +79,7 @@ private double[] values;
       g.drawRect(valueX, valueY, barWidth - 80, height);
       int labelWidth = labelFontMetrics.stringWidth(names[i]);
       x = i * barWidth + (barWidth - labelWidth) / 2;
-      g.drawString(names[i] + " " + values[i], x -60, y);
+      g.drawString(names[i] + ", Value: " + values[i], x -60, y);
       
       
     

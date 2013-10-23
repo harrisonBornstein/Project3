@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -6,7 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -15,6 +13,10 @@ import java.awt.event.ActionEvent;
 
 public class PubList extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 700341815981602709L;
 	private JPanel contentPane;
 
 
@@ -34,7 +36,7 @@ public class PubList extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(5, 5, 440, 317);
 		contentPane.add(scrollPane);
-		ArrayList<String> pubInfo = new ArrayList();
+		ArrayList<String> pubInfo = new ArrayList<String>();
 		for(int i=0; data.getSize()>i; ++i)
 		{
 			pubInfo.add("Type: " + data.getPaper(i).getType());
@@ -51,7 +53,7 @@ public class PubList extends JFrame {
 //		scrollPane.setViewportView(jTable1);
 		
 		
-		JList list = new JList(pubInfo.toArray());
+		JList<?> list = new JList<Object>(pubInfo.toArray());
 		scrollPane.setViewportView(list);
 		
 		JButton btnExit = new JButton("Exit");
@@ -75,7 +77,7 @@ public class PubList extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(5, 5, 440, 317);
 		contentPane.add(scrollPane);
-		ArrayList<String> pubInfo = new ArrayList();
+		ArrayList<String> pubInfo = new ArrayList<String>();
 	
 			pubInfo.add("Type: " + paper.getType());
 			pubInfo.add("Paper Title: " + paper.getPaperTitle());
@@ -91,7 +93,7 @@ public class PubList extends JFrame {
 //		scrollPane.setViewportView(jTable1);
 		
 		
-		JList list = new JList(pubInfo.toArray());
+		JList<?> list = new JList<Object>(pubInfo.toArray());
 		scrollPane.setViewportView(list);
 		
 		JButton btnExit = new JButton("Exit");
@@ -117,7 +119,7 @@ public class PubList extends JFrame {
 		contentPane.add(scrollPane);
 		List<String> pubInfo;
 		pubInfo = author.getPaperTitles();
-		ArrayList<String> authorInfo = new ArrayList();
+		ArrayList<String> authorInfo = new ArrayList<String>();
 	
 		for(int i=0; pubInfo.size()>i; ++i)
 		{
@@ -130,12 +132,9 @@ public class PubList extends JFrame {
 			authorInfo.add(" ");
 		}
 		
-		//String[] columnNames = {"Serial Title", "Paper Title", "Authors", "Publication Date"};
-//		JTable jTable1 = new javax.swing.JTable(pubInfo, columnNames);
-//		scrollPane.setViewportView(jTable1);
 		
 		
-		JList list = new JList(authorInfo.toArray());
+		JList<?> list = new JList<Object>(authorInfo.toArray());
 		scrollPane.setViewportView(list);
 		
 		JButton btnExit = new JButton("Exit");

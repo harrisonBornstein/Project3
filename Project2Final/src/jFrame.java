@@ -12,6 +12,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -44,7 +45,7 @@ public class jFrame extends JFrame {
 			contentPane = new JPanel();
 			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 			setContentPane(contentPane);
-			JPanel panel = new JPanel();
+			new JPanel();
 			
 			contentPane.setLayout(null);
 			contentPane.setLayout(null);
@@ -160,27 +161,176 @@ public class jFrame extends JFrame {
 							paperTypes.setVisible(true);
 					
 							JFrame f = new JFrame();
-							f.setSize(400, 300);
+							f.setSize(500, 300);
 							
 
-							f.getContentPane().add(new BarGraph(data,names, "Type of Publications"));
+							f.getContentPane().add(paperTypes);
 							f.setVisible(true);
 
 						}
 						if(response == 1)
 						{
-							double[] data = {countTypes(pub.searchAuthor(search))[0], countTypes(pub.searchAuthor(search))[1]};
-							String[] names = {"Conference Papers", "Journals"};
-							BarGraph paperTypes = new BarGraph(data, names, "Types of Papers by " + search);
+							ArrayList<int[]> years = countYears(pub.searchAuthor(search)); //get data from author
+							
+							for (int g = 0; g < years.size(); g++) //order data in list by year, most recent year first
+							{
+								for (int i = 0; i < years.size()-g - 1; ++i)
+								{
+									if (years.get(i)[0] > years.get(i + 1)[0]) 
+									{
+										Collections.swap(years, i, i + 1);
+									}
+								}
+							}
+							int range = years.get(years.size() -1)[0] - years.get(0)[0];
+							double[] pubsInYear = new double[range +1]; //param to pass into BarGraph
+							String[] stringYears = new String[range +1]; //param to pass into BarGraph
+							
+							for(int i = 0; i <= range; i++) //check if there is a pub at that year and find index
+							{	
+								int index =0;
+								boolean containsYear = false;
+								for(int j =0; j < years.size(); ++j)
+								{
+									if(years.get(j)[0] == i + years.get(0)[0])
+									{
+										index =j;
+										containsYear = true;
+									}
+								}
+								if(containsYear) //if there is a pub(s), add how many to the array
+								{
+									pubsInYear[i] = years.get(index)[1];
+								}
+								else //if not set the value to zero
+								{
+									pubsInYear[i]= 0;
+								}
+								stringYears[i] = "" +(i +years.get(0)[0]); // add the corresponding year to the string array
+							}
+							
+//							for(int i =0; pubsInYear.length > i;++i)
+//							{
+//								System.out.println(pubsInYear[i]);
+//								System.out.println("String Years " + stringYears[i]);
+//							}
+							BarGraph paperTypes = new BarGraph(pubsInYear, stringYears, "Papers per Year by " + search);
 							paperTypes.setVisible(true);
+					
+							JFrame f = new JFrame();
+							f.setSize(1200, 500);
+							
+
+							f.getContentPane().add(paperTypes);
+							f.setVisible(true);
 						}
 						if(response == 2)
 						{
+							ArrayList<int[]> years = countYears(pub.searchAuthor(search)); //get data from author
 							
+							for (int g = 0; g < years.size(); g++) //order data in list by year, most recent year first
+							{
+								for (int i = 0; i < years.size()-g - 1; ++i)
+								{
+									if (years.get(i)[0] > years.get(i + 1)[0]) 
+									{
+										Collections.swap(years, i, i + 1);
+									}
+								}
+							}
+							int range = years.get(years.size() -1)[0] - years.get(0)[0];
+							double[] pubsInYear = new double[range +1]; //param to pass into BarGraph
+							String[] stringYears = new String[range +1]; //param to pass into BarGraph
+							
+							for(int i = 0; i <= range; i++) //check if there is a pub at that year and find index
+							{	
+								int index =0;
+								boolean containsYear = false;
+								for(int j =0; j < years.size(); ++j)
+								{
+									if(years.get(j)[0] == i + years.get(0)[0])
+									{
+										index =j;
+										containsYear = true;
+									}
+								}
+								if(containsYear) //if there is a pub(s), add how many to the array
+								{
+									pubsInYear[i] = years.get(index)[2];
+								}
+								else //if not set the value to zero
+								{
+									pubsInYear[i]= 0;
+								}
+								stringYears[i] = "" +(i +years.get(0)[0]); // add the corresponding year to the string array
+							}
+							
+							
+							BarGraph paperTypes = new BarGraph(pubsInYear, stringYears, "Conference Papers per Year by " + search);
+							paperTypes.setVisible(true);
+					
+							JFrame f = new JFrame();
+							f.setSize(1200, 500);
+							
+
+							f.getContentPane().add(paperTypes);
+							f.setVisible(true);	
 						}
 						if(response == 3)
 						{
+ArrayList<int[]> years = countYears(pub.searchAuthor(search)); //get data from author
 							
+							for (int g = 0; g < years.size(); g++) //order data in list by year, most recent year first
+							{
+								for (int i = 0; i < years.size()-g - 1; ++i)
+								{
+									if (years.get(i)[0] > years.get(i + 1)[0]) 
+									{
+										Collections.swap(years, i, i + 1);
+									}
+								}
+							}
+							int range = years.get(years.size() -1)[0] - years.get(0)[0];
+							double[] pubsInYear = new double[range +1]; //param to pass into BarGraph
+							String[] stringYears = new String[range+1]; //param to pass into BarGraph
+							
+							for(int i = 0; i <= range; i++) //check if there is a pub at that year and find index
+							{	
+								int index =0;
+								boolean containsYear = false;
+								for(int j =0; j < years.size(); ++j)
+								{
+									if(years.get(j)[0] == i + years.get(0)[0])
+									{
+										index =j;
+										containsYear = true;
+									}
+								}
+								if(containsYear) //if there is a pub(s), add how many to the array
+								{
+									pubsInYear[i] = years.get(index)[3];
+								}
+								else //if not set the value to zero
+								{
+									pubsInYear[i]= 0;
+								}
+								stringYears[i] = "" +(i +years.get(0)[0]); // add the corresponding year to the string array
+							}
+							
+							for(int i =0; pubsInYear.length > i;++i)
+							{
+								System.out.println(pubsInYear[i]);
+								System.out.println("String Years " + stringYears[i]);
+							}
+							BarGraph paperTypes = new BarGraph(pubsInYear, stringYears, "Journals per Year by " + search);
+							paperTypes.setVisible(true);
+					
+							JFrame f = new JFrame();
+							f.setSize(1200, 500);
+							
+
+							f.getContentPane().add(paperTypes);
+							f.setVisible(true);	
 						}
 						if(response == 4)
 						{
@@ -197,9 +347,18 @@ public class jFrame extends JFrame {
 				public void actionPerformed(ActionEvent arg0) 
 				{
 					String search = JOptionPane.showInputDialog("Please intput the author to search for: ");
+					if(search == null)
+					{
+						
+					}
+					else
+					{
 					search.trim();
 					PubList list = new PubList(pub.searchAuthor(search),pub);
 					list.setVisible(true);
+					}
+					
+
 					
 				}
 			});
@@ -428,7 +587,7 @@ public class jFrame extends JFrame {
 		public static void printToFile(Publications publication) throws IOException
 		{
 			Object[] options = {"Text", "Binary", "Exit"};
-			BufferedReader inputReader = new BufferedReader(new InputStreamReader( System.in ) );
+			new BufferedReader(new InputStreamReader( System.in ) );
 			int response = JOptionPane.showOptionDialog(null, "Would you like binary output or text output", "File Output", JOptionPane.PLAIN_MESSAGE, 1, null, options, options[0]);
 			if(response == 0)
 			{
@@ -530,7 +689,7 @@ public class jFrame extends JFrame {
 				{
 					if (years.get(i)[0].equals(check))
 					{
-						if (years.get(i)[1].equals("ConferencePaper"))
+						if (years.get(i)[1].equals("Conference Paper"))
 						{
 							cons++;
 						}
@@ -547,7 +706,7 @@ public class jFrame extends JFrame {
 				data.add(pair);
 			}
 			
-			System.out.println("Year: " + data.get(0)[0] + " Papers: " + data.get(0)[1] + " Cons: " + data.get(0)[2] + " Journs: " + data.get(0)[3]);
+			
 			return data;
 			
 		}

@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,11 +13,7 @@ public class Publications implements Serializable
 	 * 
 	 */
 	private List<Paper> publications;
-	private boolean sortedByAuthors;
-	private boolean sortedByBiblio;
 	private boolean sortedByPaperTitle;
-	private boolean sortedBySerialTitle;
-	private boolean sortedByChrono;
 	private HashMap<String, Author> authors;
  	
 	/**
@@ -41,9 +34,10 @@ public class Publications implements Serializable
 	{
 		publications.add(toAdd);
 		//for each author of the Paper check to see if we already made an Author object for him
-		for (String author: toAdd.getAuthors())
+		for (int i =0; i < toAdd.getAuthors().size(); ++i)
 		{
-	
+			String author = toAdd.getAuthors().get(i).trim();
+			
 			//if the author does not have an object yet
 			if(!authors.containsKey(author))
 			{
@@ -51,15 +45,25 @@ public class Publications implements Serializable
 				List<String> paperTitles = new ArrayList<String>();
 				paperTitles.add(toAdd.getPaperTitle());
 				
-				//make an Author object and add it to the HashMap
-				authors.put(author, new Author(author.split(", ")[0], author.split(", ")[1], paperTitles));
+				
+				if (author.split(", ").length > 1) 
+				{
+					//make an Author object and add it to the HashMap
+					authors.put(author, new Author(author.split(", ")[0],
+							author.split(", ")[1], paperTitles));
+				}
+				else
+				{
+					authors.put(author, new Author(author.split(", ")[0],
+							"", paperTitles));
+				}
 			}
 			else if (authors.containsKey(author)) //if the author already has an object
 			{
 				//add the title to the Author object list if it's not already there
 				if (!authors.get(author).getPaperTitles().contains(toAdd.getPaperTitle()))
 				{
-					authors.get(author).addToList(toAdd.getPaperTitle());
+					authors.get(author).getPaperTitles().add(toAdd.getPaperTitle());
 				}
 			}
 			
@@ -84,11 +88,7 @@ public class Publications implements Serializable
 	public boolean sortAuthors()
 	{
 		Collections.sort(this.publications, Paper.compareAuthors());
-		sortedByBiblio = false;
 		sortedByPaperTitle = false;
-		sortedBySerialTitle = false;
-		sortedByChrono = false;
-		sortedByAuthors = true;
 		return true;
 	}
 	
@@ -99,11 +99,7 @@ public class Publications implements Serializable
 	public boolean sortBiblio()
 	{
 		Collections.sort(this.publications, Paper.compareAuthors());
-		sortedByBiblio = true;
 		sortedByPaperTitle = false;
-		sortedBySerialTitle = false;
-		sortedByChrono = false;
-		sortedByAuthors = false;
 		return true;
 	}
 	
@@ -114,11 +110,7 @@ public class Publications implements Serializable
 		public boolean sortPaperTitle()
 		{
 			Collections.sort(this.publications, Paper.comparePaperTitle());
-			sortedByBiblio = false;
 			sortedByPaperTitle = true;
-			sortedBySerialTitle = false;
-			sortedByChrono = false;
-			sortedByAuthors = false;
 			return true;
 		}		
 	/**
@@ -128,11 +120,7 @@ public class Publications implements Serializable
 	public boolean sortSerialTitle()
 	{
 		Collections.sort(this.publications, Paper.compareSerialTitle());
-		sortedByBiblio = false;
 		sortedByPaperTitle = false;
-		sortedBySerialTitle = true;
-		sortedByChrono = false;
-		sortedByAuthors = false;
 		return true;
 	}
 	
@@ -143,11 +131,7 @@ public class Publications implements Serializable
 	public boolean sortChrono()
 	{
 		Collections.sort(this.publications, Paper.compareChrono());
-		sortedByBiblio = false;
 		sortedByPaperTitle = false;
-		sortedBySerialTitle = false;
-		sortedByChrono = true;
-		sortedByAuthors = false;
 		return true;
 	}
 	
@@ -161,11 +145,7 @@ public class Publications implements Serializable
 		{
 			Collections.swap(publications, i, (int) (Math.random()*(publications.size() - i) + i));
 		}
-		sortedByBiblio = false;
 		sortedByPaperTitle = false;
-		sortedBySerialTitle = false;
-		sortedByChrono = false;
-		sortedByAuthors = false;
 		return true;
 	}
 	
