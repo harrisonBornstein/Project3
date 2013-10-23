@@ -719,7 +719,7 @@ ArrayList<int[]> years = countYears(pub.searchAuthor(search)); //get data from a
 	/**
 	 * 
 	 * @param author
-	 * @return a double[] which consists of the number CoAuthors for each every paper.
+	 * @return a double[] which consists of the number CoAuthors with each [i] = amount of papers with i co-authors
 	 */
 	public double[] countCoAuthors(Author author)
 	{
