@@ -1,5 +1,3 @@
-import java.awt.EventQueue;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -22,9 +20,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JScrollPane;
-import javax.swing.JScrollBar;
-import javax.swing.JList;
 
 
 public class jFrame extends JFrame {
@@ -156,11 +151,35 @@ public class jFrame extends JFrame {
 						int response = JOptionPane.showOptionDialog(null, optionPane, "Academic Paper already in the Collection", JOptionPane.PLAIN_MESSAGE, 1, null, options, options[0]);
 						if(response == 0)
 						{
+<<<<<<< HEAD
+							int[] data = new int[2];
+							String[] types = {"Conference Papers", "Journal Articles"};
+							
+							data[0] = countTypes(pub.searchAuthor(search))[0];
+							data[1] = countTypes(pub.searchAuthor(search))[1];
+							BarGraph typeGraph = new BarGraph(data,types, "Type of Publications");
+							typeGraph.setVisible(true);
+							JFrame f = new JFrame();
+							f.setSize(400, 300);
+							
+
+							f.getContentPane().add(new BarGraph(data,types, "Type of Publications"));
+							f.setVisible(true);
+							 
+=======
 							//TODO Type of pub
+							double[] data = {countTypes(pub.searchAuthor(search))[0], countTypes(pub.searchAuthor(search))[1]};
+							String[] names = {"Conference Papers", "Journals"};
+							BarGraph paperTypes = new BarGraph(data, names, "Types of Papers by " + search);
+							paperTypes.setVisible(true);
+>>>>>>> 6f7bf015bf35b8321292e3a0048f3c4dfcf50e18
 						}
 						if(response == 1)
 						{
-							
+							double[] data = {countTypes(pub.searchAuthor(search))[0], countTypes(pub.searchAuthor(search))[1]};
+							String[] names = {"Conference Papers", "Journals"};
+							BarGraph paperTypes = new BarGraph(data, names, "Types of Papers by " + search);
+							paperTypes.setVisible(true);
 						}
 						if(response == 2)
 						{
@@ -186,7 +205,9 @@ public class jFrame extends JFrame {
 				{
 					String search = JOptionPane.showInputDialog("Please intput the author to search for: ");
 					search.trim();
-					countYears(pub.searchAuthor(search));
+					PubList list = new PubList(pub.searchAuthor(search),pub);
+					list.setVisible(true);
+					
 				}
 			});
 			btnFindAuthors.setBounds(173, 118, 149, 29);
@@ -405,7 +426,7 @@ public class jFrame extends JFrame {
 		}
 		
 		/**
-		 * Prints a Pulications to a Text or Binary File of specified name
+		 * Prints a Publications to a Text or Binary File of specified name
 		 * 
 		 * @param publication Publications to print to a file
 		 * 
