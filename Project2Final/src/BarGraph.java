@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
  
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -50,7 +51,7 @@ private double[] values;
  
     Font titleFont = new Font("SansSerif", Font.BOLD, 20);
     FontMetrics titleFontMetrics = g.getFontMetrics(titleFont);
-    Font labelFont = new Font("SansSerif", Font.PLAIN, 10);
+    Font labelFont = new Font("SansSerif", Font.PLAIN, 15);
     FontMetrics labelFontMetrics = g.getFontMetrics(labelFont);
  
     int titleWidth = titleFontMetrics.stringWidth(title);
@@ -84,9 +85,13 @@ private double[] values;
       g.drawRect(valueX, valueY, barWidth - 80, height);
       int labelWidth = labelFontMetrics.stringWidth(names[i]);
       x = i * barWidth + (barWidth - labelWidth) / 2;
-      g.drawString(names[i], x, y);
+      g.drawString(names[i] + " " + values[i], x -60, y);
+      
+      
+    
     }
+    
+	
   }
- 
- 
+  
 }
