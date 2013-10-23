@@ -151,28 +151,21 @@ public class jFrame extends JFrame {
 						int response = JOptionPane.showOptionDialog(null, optionPane, "Academic Paper already in the Collection", JOptionPane.PLAIN_MESSAGE, 1, null, options, options[0]);
 						if(response == 0)
 						{
-<<<<<<< HEAD
-							int[] data = new int[2];
-							String[] types = {"Conference Papers", "Journal Articles"};
-							
-							data[0] = countTypes(pub.searchAuthor(search))[0];
-							data[1] = countTypes(pub.searchAuthor(search))[1];
-							BarGraph typeGraph = new BarGraph(data,types, "Type of Publications");
-							typeGraph.setVisible(true);
-							JFrame f = new JFrame();
-							f.setSize(400, 300);
-							
-
-							f.getContentPane().add(new BarGraph(data,types, "Type of Publications"));
-							f.setVisible(true);
 							 
-=======
-							//TODO Type of pub
+
+							
 							double[] data = {countTypes(pub.searchAuthor(search))[0], countTypes(pub.searchAuthor(search))[1]};
 							String[] names = {"Conference Papers", "Journals"};
 							BarGraph paperTypes = new BarGraph(data, names, "Types of Papers by " + search);
 							paperTypes.setVisible(true);
->>>>>>> 6f7bf015bf35b8321292e3a0048f3c4dfcf50e18
+					
+							JFrame f = new JFrame();
+							f.setSize(400, 300);
+							
+
+							f.getContentPane().add(new BarGraph(data,names, "Type of Publications"));
+							f.setVisible(true);
+
 						}
 						if(response == 1)
 						{
