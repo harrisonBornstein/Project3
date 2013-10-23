@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
  
 
-/*Code is from stack overflow*/
+/*Code is from stack overflow then modified to fit needs*/
 public class BarGraph extends JPanel {
   /**
 	 * 

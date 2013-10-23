@@ -412,15 +412,7 @@ ArrayList<int[]> years = countYears(pub.searchAuthor(search)); //get data from a
 						{
 							pub.addPaper(journalTest.getPaper(i));
 						}
-						/*for(int i =0; conTest.getSize()>i;++i)
-						{
-							pub.addPaper(conTest.getPaper(i));
-						}
 						
-						for(int i =0; journalTest.getSize()>i;++i)
-						{
-							pub.addPaper(journalTest.getPaper(i));
-						}*/
 						
 					}
 					if(response ==1)
@@ -724,6 +716,11 @@ ArrayList<int[]> years = countYears(pub.searchAuthor(search)); //get data from a
 			return data;
 			
 		}
+	/**
+	 * 
+	 * @param author
+	 * @return a double[] which consists of the number CoAuthors for each every paper.
+	 */
 	public double[] countCoAuthors(Author author)
 	{
 		int max =0;
