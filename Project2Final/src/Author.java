@@ -1,9 +1,14 @@
+import java.io.Serializable;
 import java.util.List;
 
 
-public class Author {
+public class Author implements Serializable {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2105216951242410894L;
 	private String lastName;
 	private String firstName;
 	private List<String> paperTitles;
