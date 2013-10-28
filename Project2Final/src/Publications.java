@@ -42,28 +42,28 @@ public class Publications implements Serializable
 			if(!authors.containsKey(author))
 			{
 				//make list with the paperTitle in it
-				List<String> paperTitles = new ArrayList<String>();
-				paperTitles.add(toAdd.getPaperTitle());
+				List<Paper> papers = new ArrayList<Paper>();
+				papers.add(toAdd);
 				
 				
 				if (author.split(", ").length > 1) 
 				{
 					//make an Author object and add it to the HashMap
 					authors.put(author, new Author(author.split(", ")[0],
-							author.split(", ")[1], paperTitles));
+							author.split(", ")[1], papers));
 				}
 				else
 				{
 					authors.put(author, new Author(author.split(", ")[0],
-							"", paperTitles));
+							"", papers));
 				}
 			}
 			else if (authors.containsKey(author)) //if the author already has an object
 			{
 				//add the title to the Author object list if it's not already there
-				if (!authors.get(author).getPaperTitles().contains(toAdd.getPaperTitle()))
+				if (!authors.get(author).getPapers().contains(toAdd))
 				{
-					authors.get(author).getPaperTitles().add(toAdd.getPaperTitle());
+					authors.get(author).getPapers().add(toAdd);
 				}
 			}
 			

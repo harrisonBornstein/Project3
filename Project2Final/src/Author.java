@@ -11,16 +11,16 @@ public class Author implements Serializable {
 	private static final long serialVersionUID = 2105216951242410894L;
 	private String lastName;
 	private String firstName;
-	private List<String> paperTitles;
+	private List<Paper> papers;
 	
 	/**
 	 * Constructs an Author Object
 	 */
-	public Author(String lastName, String firstName, List<String> listOfPapers)
+	public Author(String lastName, String firstName, List<Paper> papers)
 	{
 		this.lastName = lastName;
 		this.firstName = firstName;
-		this.paperTitles = listOfPapers;
+		this.papers = papers;
 	}
 	
 	/**
@@ -45,9 +45,9 @@ public class Author implements Serializable {
 	 * 
 	 * @return List<String> of the Paper Titles written or co-written by that Author
 	 */
-	public List<String> getPaperTitles()
+	public List<Paper> getPapers()
 	{
-		return paperTitles;
+		return papers;
 	}
 	
 	/**
@@ -72,8 +72,8 @@ public class Author implements Serializable {
 	 * 
 	 * @param newTitle String to be added to the Title list of the Author
 	 */
-	public  void addToList(String newTitle)
+	public  void addToList(Paper newPaper)
 	{
-		paperTitles.add(newTitle);
+		papers.add(newPaper);
 	}
 }

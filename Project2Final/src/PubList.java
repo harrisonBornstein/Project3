@@ -117,18 +117,18 @@ public class PubList extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(5, 5, 440, 317);
 		contentPane.add(scrollPane);
-		List<String> pubInfo;
-		pubInfo = author.getPaperTitles();
+		List<Paper> pubInfo;
+		pubInfo = author.getPapers();
 		ArrayList<String> authorInfo = new ArrayList<String>();
 	
 		for(int i=0; pubInfo.size()>i; ++i)
 		{
-			authorInfo.add("Type: " + data.searchPaperTitle(pubInfo.get(i)).getType());
-			authorInfo.add("Paper Title: " + data.searchPaperTitle(pubInfo.get(i)).getPaperTitle());
-			authorInfo.add("Serial Title: " + data.searchPaperTitle(pubInfo.get(i)).getSerialTitle());
-			authorInfo.add("Authors: " + data.searchPaperTitle(pubInfo.get(i)).getAuthors().toString());
-			authorInfo.add("Page Numbers: " + data.searchPaperTitle(pubInfo.get(i)).getPages());
-			authorInfo.add("Publication Date: " + data.searchPaperTitle(pubInfo.get(i)).getDate());
+			authorInfo.add("Type: " + pubInfo.get(i).getType());
+			authorInfo.add("Paper Title: " + pubInfo.get(i).getPaperTitle());
+			authorInfo.add("Serial Title: " + pubInfo.get(i).getSerialTitle());
+			authorInfo.add("Authors: " + pubInfo.get(i).getAuthors().toString());
+			authorInfo.add("Page Numbers: " + pubInfo.get(i).getPages());
+			authorInfo.add("Publication Date: " + pubInfo.get(i).getDate());
 			authorInfo.add(" ");
 		}
 		

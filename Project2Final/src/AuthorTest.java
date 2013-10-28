@@ -12,13 +12,13 @@ public class AuthorTest {
 	@Test
 	public void testAuthor() 
 	{
-		List<String> titles = new ArrayList<String>();
-		titles.add("Cool Book");
+		List<Paper> titles = new ArrayList<Paper>();
+		titles.add(new Journal());
 		
 		Author me = new Author("Kevin", "Reimnitz", titles);
 		Assert.assertEquals(me.getFirstName(), "Kevin");
 		Assert.assertEquals(me.getLastName(), "Reimnitz");
-		Assert.assertEquals(me.getPaperTitles(), titles);
+		Assert.assertEquals(me.getPapers(), titles);
 	}
 
 

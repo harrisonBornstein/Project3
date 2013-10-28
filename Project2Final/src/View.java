@@ -650,9 +650,9 @@ ArrayList<int[]> years = countYears(pub.searchAuthor(search)); //get data from a
 		{
 			int cons = 0;
 			int journs = 0;
-			for (int i = 0; i < author.getPaperTitles().size(); i++) //go through list of titles
+			for (int i = 0; i < author.getPapers().size(); i++) //go through list of titles
 			{
-				if (pub.searchPaperTitle(author.getPaperTitles().get(i)).getType().equals("Conference Paper")) //if the paper is a Conference Paper
+				if (author.getPapers().get(i).getType().equals("Conference Paper")) //if the paper is a Conference Paper
 				{
 					cons++;
 				}
@@ -682,9 +682,9 @@ ArrayList<int[]> years = countYears(pub.searchAuthor(search)); //get data from a
 			ArrayList<String[]> years = new ArrayList<String[]>();
 			
 			
-			for (String title: author.getPaperTitles())
+			for (Paper paper: author.getPapers())
 			{
-				String[] yearAndType = {pub.searchPaperTitle(title).getDate().split(" ")[1], pub.searchPaperTitle(title).getType()};
+				String[] yearAndType = {paper.getDate().split(" ")[1], paper.getType()};
 				years.add(yearAndType); //add year as a string
 			}
 			
@@ -727,18 +727,18 @@ ArrayList<int[]> years = countYears(pub.searchAuthor(search)); //get data from a
 	public double[] countCoAuthors(Author author)
 	{
 		int max =0;
-		for(int i =0; i < author.getPaperTitles().size(); i++)
+		for(int i =0; i < author.getPapers().size(); i++)
 		{
-			int coAuthors = pub.searchPaperTitle(author.getPaperTitles().get(i)).getAuthors().size() -1;
+			int coAuthors = author.getPapers().get(i).getAuthors().size() -1;
 			if(coAuthors > max)
 					{
 						max = coAuthors;
 					}
 		}
 		double[] data = new double[max +1];
-		for (int i =0; i < author.getPaperTitles().size(); i++)
+		for (int i =0; i < author.getPapers().size(); i++)
 		{
-			int coAuthors = pub.searchPaperTitle(author.getPaperTitles().get(i)).getAuthors().size() -1;
+			int coAuthors = author.getPapers().get(i).getAuthors().size() -1;
 			data[coAuthors]++;
 		}
 		return data;
